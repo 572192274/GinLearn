@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>Hello</title>
+</head>
+<body>
+    <p>u1</p>
+    <p>Hello {{.u1.Name}}</p>
+    <p>年龄： {{.u1.Age}}</p>
+    <p>性别： {{.u1.Gender}}</p>
+
+    <p>m1</p>
+    <p>Hello {{.m1.name}}</p>
+    <p>年龄： {{.m1.age}}</p>
+    <p>性别： {{.m1.gender}}</p>
+
+<hr>
+{{/*变量定义*/}}
+{{$v1:=100}}
+{{$age:=.m1.age}}
+{{/*去除空格*/}}
+{{- $age -}}
+
+<hr>
+{{/*条件判断*/}}
+{{if $v1}}
+{{$v1}}
+{{else}}
+啥都没有
+{{end}}
+
+<hr>
+{{/*比较函数*/}}
+{{if lt .m1.age 22}}
+好好上学
+{{else}}
+好好工作
+{{end}}
+
+<hr>
+{{/*range循环，类比go中range循环*/}}
+{{range $idx,$hobby := .hobby}}
+    <p>idx:{{$idx}} - {{$hobby}}</p>
+{{else}}
+    没啥爱好
+{{end}}
+
+<hr>
+{{/*with作为一个局部作用域*/}}
+{{with .m1}}
+<p>Hello {{.name}}</p>
+<p>年龄： {{.age}}</p>
+<p>性别： {{.gender}}</p>
+{{end}}
+
+<hr>
+{{/*预定义函数*/}}
+{{index .hobby 2}}
+</body>
+</html>
